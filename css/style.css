@@ -1,35 +1,150 @@
 html, body {
     margin: 0;
-    background-color: #333;
+    background-color: #008B45; /* SpringGreen */
+    font-family: sans-serif;
+    color: #333;
+}
+
+input {
+    border-width: 0;
+    color: #333;
 }
 
 #wrapper {
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
-    background-color: #777;
-    width: 700px;
+    background-color: #fff;
+    width: 100%;
 }
 
-input[type=text], textarea {
-    box-sizing: border-box;
+#content {
     width: 100%;
-    height: 35px;
-    padding-left: 4px;
+    max-width: 800px;
+    margin: auto;
+}
+
+#frmWrite {
+    text-align: right;
+}
+
+.writeText {
+    width: 100%;
+    max-width: 800px;
+    height: 40px;
+    font-size: 22px;
     margin-bottom: 20px;
-    border: none;
+}
+
+.writeInputGen {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    padding-left: 4px;
+    padding-right: 4px;
+    border: 2px solid #5EDA9E; /* FreshGreen */
+    border-width: 2px;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    color: #333;
+    resize: none;
+    transition: all 0.25s ease;
+}
+
+.writeInputGen:hover, .writeInputGen:active {
+}
+
+.writeH3 {
+    color: #43CD80; /* SeaGreen3 */
+    text-align:left;
+    margin-bottom: 0;
+}
+
+.ol {
+    outline: solid;
+    outline-color: transparent;
+}
+
+.btn {
+    height: 35px;
+    width: 79px;
+    font-size: 22px;
+    color: #fff;
+    background-color: #5EDA9E; /* FreshGreen */
+    border: 0;
+    transition: all 0.25s ease;
+}
+
+.btn:hover, .btn:active {
+    background-color: #008B45; /* SpringGreen */
 }
 
 #txtBody {
     height: 500px;
+    font-size: 20px;
+}
+
+#tagControls {
+    margin-bottom: 20px;
+}
+
+#txtTag {
+    height: 35px;
+    font-size: 22px;
+    margin-right: 0;
+}
+
+#btnTag {
+    margin-left: -6px;
+    border-bottom: 2px solid transparent;
+}
+
+#tagsContainer {
+    display: none;
+    transition: all 0.25s ease;
+}
+
+#tags {
+    text-align: left;
+}
+
+.tag {
+    float: left;
+    color: #fff;
+    background-color: #5EDA9E; /* FreshGreen */
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    transition: all 0.25s ease;
+}
+
+.tagX {
+    background-color: #fff;
+    color: #5EDA9E; /* FreshGreen */
+    font-weight: bolder;
+    border: 0;
+    outline: none;
+    margin-left: 4px;
+    margin-bottom: 1px;
+    transition: all 0.25s ease;
+}
+
+.tagX:hover, .tagX:active {
+    background-color: #ff3232;
+    color: #fff;
 }
 
 #btnPostWrite {
-    float: right;
+    margin-bottom: 40px;
+    height: 50px;
 }
 
 #chkEditContainer {
-    float: right;
+    color: #43CD80; /* SeaGreen3 */
+    font-size: 20px;
 }
 
 a {
@@ -38,4 +153,8 @@ a {
 
 a:visited {
     color: inherit;
+}
+
+::selection {
+    background-color: #999;
 }

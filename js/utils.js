@@ -6,6 +6,12 @@
 $(document).ready(function() {
 
     // Vars
+    
+    MSG_LST = {
+        tagTooShort: "Tags must be at least one character long",
+        tagExists: "You've already entered that tag",
+        tagLimitExceeded: "You've exceeded the maximum number of tags"
+    };
 
     var escapeList = [
         ["<", "&lt;"],
@@ -19,12 +25,12 @@ $(document).ready(function() {
     // End Vars
 
     // show outline
-    $(".ol").focus(function() {
+    $("body").on("focus", ".ol", function() {
         $(this).css("outline-color", "#43CD80"); // Sea Green 3
     });
 
     // hide outline
-    $(".ol").on("blur", function() {
+    $("body").on("blur", ".ol", function() {
         $(this).css("outline-color", "transparent");
     });
 

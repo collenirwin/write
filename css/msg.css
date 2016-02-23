@@ -1,0 +1,59 @@
+﻿#msg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 500px;
+    display: none;
+    
+    background-color: #fff;
+    color: #43CD80; /* SeaGreen3 */
+    border: 4px solid #5EDA9E; /* FreshGreen */
+    transition: all 0.25s ease;
+}
+
+#msgOver {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #000;
+    opacity: 0.75;
+}
+
+#msgTitle {
+    text-align: left;
+    font-size: 20px;
+    height: 30px;
+    padding-left: 4px;
+}
+
+#msgBody {
+    text-align: left;
+    font-size: 18px;
+    height: auto;
+    min-height: 70px;
+    padding-left: 4px;
+}
+
+#msgFoot {
+    text-align: right;
+    height: 30px;
+}
+
+.msgButton {
+    height: 30px;
+    width: auto;
+    font-size: 20px;
+    color: #fff;
+    background-color: #5EDA9E; /* FreshGreen */
+    border: 0;
+    transition: all 0.25s ease;
+    margin-left: 8px;
+}
+
+.msgButton:hover, .msgButton:active {
+    background-color: #008B45; /* SpringGreen */
+}

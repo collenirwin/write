@@ -80,12 +80,22 @@ input {
 }
 
 #txtBody {
-    height: 500px;
+    height: 350px;
     font-size: 20px;
 }
 
 #tagControls {
     margin-bottom: 20px;
+}
+
+#tagError {
+    display: none;
+    width: 100%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: #f83f3f;
+    color: #fff;
 }
 
 #txtTag {
@@ -109,6 +119,7 @@ input {
 }
 
 .tag {
+    display: none;
     float: left;
     color: #fff;
     background-color: #5EDA9E; /* FreshGreen */

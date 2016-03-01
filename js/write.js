@@ -105,7 +105,7 @@ $(document).ready(function() {
     $("#btnPostWrite").on("click touchend", function() {
         msgPost.init("Post (title)?",
             "Are you sure you want to post this piece? Remember, anyone will be able to view it.",
-            "<input type='button' class='msgButton ol' value='Post' />" +
+            "<input type='button' class='msgButton ol' value='Post' onclick='document.forms[\"frmWrite\"].submit();' />" +
             "<input type='button' class='msgButton ol' value='Cancel' onclick='msgPost.close();' />"
             );
         msgPost.show();

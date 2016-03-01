@@ -8,9 +8,16 @@
 <body>
     <div id="wrapper">
         <div id="content">
-            Post Page 
-            <br />
-            Nothing here yet
+            <div id="title">
+                <?php
+                echo $_POST["title"];
+                ?>
+            </div>
+            <div id="body">
+                <?php
+                echo $_POST["body"];
+                ?>
+            </div>
         </div>
     </div>
 </body>

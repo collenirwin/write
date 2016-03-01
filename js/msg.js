@@ -3,9 +3,13 @@
 // requires: jQuery, #msg div, #msgTitle div, #msgBody div, #msgFoot div, #msgOver div
 // desc: basic messagebox class, alert replacer
 
-Msg = function() {
+var Msg = function() {
 
-    // Vars v
+    // Vars
+
+    this.title = "";
+    this.body = "";
+    this.foot = "";
 
     var msg = document.getElementById("msg"),
         msgTitle = document.getElementById("msgTitle"),
@@ -15,17 +19,23 @@ Msg = function() {
         msgX    = document.getElementById("msgX");
 
     var self = this; // Hack needed to avoid losing 'this' somehow (really, javascript?)
+    var xButton = '<input type="button" id="msgX" class="msgButton ol" style="float:right;width:30px;" value="x" />';
 
-    // Main Methods v
+    // End Vars
+    
+    // Main Methods
 
-    this.init = function(title, body, buttons) {
-        $(msgTitle).append(title);
-        $(msgBody).html(body);
-        $(msgFoot).html(buttons); // buttons should have .msgButton class
+    this.init = function(title, body, foot) {
+        self.title = title;
+        self.body = body;
+        self.foot = foot;
     }
 
     this.show = function(buttons) { 
-        
+        $(msgTitle).html(self.title);
+        $(msgTitle).append(xButton);
+        $(msgBody).html(self.body);
+        $(msgFoot).html(self.foot);
 
         self.center();
         $(msgOver).fadeIn("fast");
@@ -42,17 +52,21 @@ Msg = function() {
         msg.style.left = (($(window).width() / 2) - ($(msg).width() / 2)).toString() + "px";
     }
 
-    // Events v
+    // End Main Methods
+
+    // Events
 
     $(window).on("resize", function() {
         setTimeout(self.center(), 100);
     });
 
-    $(msgX).on("click touchend", function() {
+    $(msg).on("click touchend", msgX, function() {
         self.close();
     });
 
     $(msgOver).on("click touchend", function() {
         self.close();
     });
+
+    // End Events
 }

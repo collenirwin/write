@@ -15,8 +15,7 @@ var Msg = function() {
         msgTitle = document.getElementById("msgTitle"),
         msgBody = document.getElementById("msgBody"),
         msgFoot = document.getElementById("msgFoot"),
-        msgOver = document.getElementById("msgOver"),
-        msgX    = document.getElementById("msgX");
+        msgOver = document.getElementById("msgOver")
 
     var self = this; // Hack needed to avoid losing 'this' somehow (really, javascript?)
     var xButton = '<input type="button" id="msgX" class="msgButton ol" style="float:right;width:30px;" value="x" />';
@@ -56,11 +55,11 @@ var Msg = function() {
 
     // Events
 
-    $(window).on("resize", function() {
+    $(window).on("resize", function() { // center on resize
         setTimeout(self.center(), 100);
     });
 
-    $(msg).on("click touchend", msgX, function() {
+    $(msg).on("click touchend", "#msgX", function() {
         self.close();
     });
 

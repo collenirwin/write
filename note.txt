@@ -1,0 +1,3 @@
+use z-index on msgOver and msg
+
+show character count for body

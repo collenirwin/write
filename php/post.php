@@ -6,27 +6,41 @@
         echo "Couldn't connect to our database. Please try again later.";
     } else { // Connection good
         try {
-            $title   = mysqli_real_escape_string($con, $_POST["title"]);
-            $body    = mysqli_real_escape_string($con, $_POST["body"]);
-            $edit    = mysqli_real_escape_string($con, $_POST["edit"]);
+            $title   = $_POST["title"];
+            $body    = $_POST["body"];
+            $edit    = $_POST["edit"];
             $last_ID = -1;
             
             $tags = getTags($_POST["tags"]);
             
-            mysqli_query($con, // Post table
-                "INSERT into $postTable (post_title, post_body, post_edit) VALUES ('$title', '$body', $edit)");
-                
-            $last_ID = mysqli_insert_id($con); // ID of the new row
+            // Post table
+            $postQuery = "INSERT into post (post_title, post_body, post_edit) VALUES (?, ?, ?)");
+            $stmt = $con->prepare($postQuery);
+            $stmt->bind_param("ssi", $title, $body, $edit);
+            $stmt->execute();
+            $last_ID = $con->insert_id; // ID of the new row
+            $stmt->close();
+            
+            // Tag table
+            $tagQuery = "INSERT into tag (tag_text) VALUES (?)";
+            $stmt = $con->prepare($tagQuery);
+            
+            // TagLink table
+            $linkQuery = "INSERT into tag_link (tag_id, post_id) VALUES (?, ?)";
+            $linkStmt = $con->prepare($linkQuery);
             
             for ($x = 0; $x < count($tags); $x++) {
-                mysqli_query($con, // Tag table
-                    "INSERT into $tagTable (tag_text) VALUES ('" . mysqli_real_escape_string($tags[x]) . "')");
                 
-                $last_tag_ID = mysqli_insert_id($con);
-                 
-                mysqli_query($con, // Tag/post link table
-                    "INSERT into $tagLinkTable (tag_id, post_id) VALUES ($last_tag_ID, $last_ID)");
+                $stmt->bind_param("s", $tags[x]);
+                $stmt->execute();
+                $last_tag_ID = $con->insert_id;
+                
+                $linkStmt->bind_param("ii", $last_tag_ID, $last_ID);
+                $linkStmt->execute();
             }
+            
+            $stmt->close();
+            $linkStmt->close();
             
             echo $last_ID;
             
@@ -35,5 +49,5 @@
         }
     }
     
-    mysqli_close($con);
+    $con->close();
 ?>

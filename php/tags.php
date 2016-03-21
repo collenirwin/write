@@ -15,18 +15,25 @@
         return $tagArray;
     }
     
-    function getTagsDB($connection, $postID) {  
-        $result = mysqli_query($connection, 
-            "SELECT tag.tag_text AS tagtext FROM tag_link INNER JOIN tag ON tag.tag_id = tag_link.tag_id WHERE post_id = $postID");
-            
+    function getTagsDB($mysqli, $postID) {
+        $result = "";
+        
+        $query = "SELECT tag.tag_text FROM tag_link INNER JOIN tag ON tag.tag_id = tag_link.tag_id WHERE post_id = ?";
+        $stmt = $mysqli->prepare($query);
+        $stmt->bind_param("i", $postID);
+        $stmt->execute();
+        $stmt->bind_result($result);
+        
         $tagArray = array();
         
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($tagArray, htmlspecialchars($row["tagtext"]));
+        if ($stmt->num_rows > 0) {
+            while ($stmt->fetch()) {
+                array_push($tagArray, htmlspecialchars($result));
             }
         }
         
+        $stmt->free_result();
+        $stmt->close();
         
         return $tagArray;
     }

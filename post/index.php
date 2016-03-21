@@ -21,18 +21,28 @@
                 if (!$con) {
                     echo "Couldn't connect to our database. Please try again later.";
                 } else {
-                    $post_ID = mysqli_real_escape_string($con, $_GET["post_id"]);
-                    $post_all = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM $postTable WHERE post_id = $post_ID"));
+                    $post_ID = $_GET["post_id"]; // TODO: add validaiton
                     
-                    $title = $post_all["post_title"];
-                    $body  = $post_all["post_body"];
-                    $edit  = $post_all["post_edit"];
+                    $stmt = $con->prepare("SELECT post_title, post_body, post_edit FROM post WHERE post_id = ?");
+                    $stmt->bind_param("i", $post_ID);
+                    $stmt->execute();
+                    $stmt->bind_result($t, $b, $e);
+                    while ($stmt->fetch()) {
+                        $title = htmlspecialchars($t);
+                        $body  = htmlspecialchars($b);
+                        $edit  = $e; // never echoed
+                    }
+                    
+                    $stmt->free_result();
+                    $stmt->close();
                     
                     $tags = getTagsDB($con, $post_ID);
                 }
             } catch(Exception $e) {
                 echo "Something's gone wrong! Please try again later.";
             }
+            
+            mysqli_close($con);
         ?>
     </div>
     

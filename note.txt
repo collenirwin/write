@@ -1,3 +1,0 @@
-ordering tags in database, keep original order
-
-use a namespace for write.js, ex: http://stackoverflow.com/questions/7048278/accessing-variable-outside-of-document-ready-jquery

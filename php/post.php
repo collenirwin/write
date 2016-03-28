@@ -14,7 +14,7 @@
             $tags = getTags($_POST["tags"]);
             
             // Post table
-            $postQuery = "INSERT into post (post_title, post_body, post_edit) VALUES (?, ?, ?)");
+            $postQuery = "INSERT into post (post_title, post_body, post_edit) VALUES (?, ?, ?)";
             $stmt = $con->prepare($postQuery);
             $stmt->bind_param("ssi", $title, $body, $edit);
             $stmt->execute();
